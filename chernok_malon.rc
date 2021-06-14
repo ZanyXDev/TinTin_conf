@@ -1,0 +1,24 @@
+#VARIABLE {chat_file} {/home/zanyxdev/mud/logs/chat.log}
+
+#CONFIG {SPEEDWALK} {OFF};
+#CONFIG {SPLIT};
+#CONFIG {PACKET PATCH} {5};
+#CONFIG {COLOR PATCH} {ON};
+#CONFIG {MCCP} {ON};
+#CONFIG {LOG} {RAW};
+#CONFIG {BUFFER SIZE} {2000000};
+#CONFIG {COMMAND COLOR} {<fcf>}; 
+
+#SESSION {bylins} {bylins.su} {4000};
+
+#READ /home/zanyxdev/mud/variable.tin
+#READ /home/zanyxdev/mud/aliases.tin
+#READ /home/zanyxdev/mud/actions.tin
+
+#FORMAT {log_file} {/home/zanyxdev/mud/logs/active/%t.log} {%Y-%m-%d};
+#LOG {APPEND} {$log_file};
+
+#FORMAT {start_time} {%T};
+#SPLIT 1 1 0 -80
+
+

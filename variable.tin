@@ -1,0 +1,9 @@
+#VARIABLE {bottle} {бочонок};
+#VARIABLE {chest} {торба};
+#VARIABLE {fight} {0};
+#VARIABLE {food} {хлеб};
+#VARIABLE {char_name} {малон};
+#VARIABLE {friend} {малон};
+
+
+

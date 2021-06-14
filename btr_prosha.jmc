@@ -1,0 +1,98 @@
+#message variable OFF
+#multiaction off
+#multihighlight off
+#presub on
+#echo off
+#ignore off
+#speedwalk on
+#togglesubs off
+#verbat off
+#alias {.вр} {#var enemy %1} {default}
+#alias {.др} {#var friend %1} {default}
+#alias {.дт} {дать тр $merchant} {default}
+#alias {.купец} {#var merchant %1} {default}
+#alias {.кх} {купить %1 хлеб;пол %1 хлеб $chest} {default}
+#alias {.пн} {пнуть} {default}
+#alias {.пх} {взять %1 хлеб $chest;продать %1 хлеб} {default}
+#alias {.след} {#if {$fight=0} {#var friend %1;след $friend}} {default}
+#alias {.уб} {#if {$fight=0} {пнуть $enemy}} {default}
+#alias {bottle_1} {#var bottle фляга;#hotkey {ctrl+w} {bottle_2};#scri jmc.Output("  ***  фляга ***",15)} {default}
+#alias {bottle_2} {#var bottle мех;#hotkey {ctrl+w} {bottle_1};#scri jmc.Output("  ***  мех ***",15)} {default}
+#alias {che_1} {#var chest меш;#hotkey {ctrl+r} {che_2};#scri jmc.Output("  ***  Мешок ***",15)} {default}
+#alias {che_2} {#var chest сум;#hotkey {ctrl+r} {che_3};#scri jmc.Output("  ***  Сумка ***",15)} {default}
+#alias {che_3} {#var chest котомка;#hotkey {ctrl+r} {che_1};#scri jmc.Output("  ***  Котомка ***",15)} {default}
+#alias {foo_1} {#var food хле;#hotkey {ctrl+t} {foo_2};#scri jmc.Output("  ***  хлеб ***",15)} {default}
+#alias {foo_2} {#var food малин;#hotkey {ctrl+t} {foo_3};#scri jmc.Output("  ***  малинка ***",15)} {default}
+#alias {foo_3} {#var food мяс;#hotkey {ctrl+t} {foo_1};#scri jmc.Output("  ***  мясо ***",15)} {default}
+#alias {light_1} {#var light шар;#var infra 0;#hotkey {ctrl+l} {light_2};#scri jmc.Output("  ***  шарик ***",15)} {default}
+#alias {light_2} {#var light лампа;#var infra 0;#hotkey {ctrl+l} {light_3};#scri jmc.Output("  ***  лампа ***",15)} {default}
+#alias {light_3} {#var infra 1;#hotkey {ctrl+l} {light_1};#scri jmc.Output(" Инфравидение",15)} {default}
+#alias {еда} {#var food %1} {default}
+#alias {жрать} {взять $food $chest;есть $food;взять $bottle $chest;пить $bottle;положить $bottle $chest} {default}
+#alias {сосуд} {#var bottle %1} {default}
+#alias {тюк} {#var chest %1} {default}
+#action {^Слишком темно...} {#if {$infra=0} {взять $light $chest;держ $light}} {1} {default}
+#action {Пожалуй, Вам лучше встать на ноги.} {#if {$fight=0} {встать}} {1} {default}
+#action {Вам лучше встать на ноги} {#if {$fight=0} {встать}} {1} {default}
+#action {$friend %1 отдохнуть.} {#if {$fight=0} {отд}} {1} {default}
+#action {$friend %1 : %2H, %3V} {доложить} {1} {default}
+#action {$friend %1 отдых и} {#if {$fight=0} {вста}} {1} {default}
+#action {[%1:%2]} {#var fight 1} {2} {default}
+#action {/^Select one :/} {2} {5} {default}
+#action {/^Представьтесь, пожалуйста :/} {$charname} {5} {default}
+#action {/^Персонаж с таким именем уже существует. Введите пароль :/} {$charpass} {5} {default}
+#action {/^\* В связи с проблемами/} {#cr} {5} {default}
+#action {На востоке показались первые солнечные лучи} {снять $light;пол $light $chest;#tickset;#scri jmc.Output("  *** С В Е Т Л О ***",15)} {5} {default}
+#action {Солнце медленно исчезло за горизонтом} {#tickset;#scri jmc.Output("   *** Т Е М Н О ***",15)} {5} {default}
+#action {Вых:%0>} {#var fight 0} {5} {default}
+#action {/^[А-Яа-я]+ принят в члены Вашего кружка \(тьфу-ты, группы :\)\./} {#var isgroup=true} {5} {default}
+#action {/^Ваша группа состоит из:/} {#var isgroup=true} {5} {default}
+#action {^Вы почувствовали себя менее защищенно.} {гг !!! ЗАЩИТА КАЮК !!!} {5} {default}
+#action {^Ваши очертания приобрели отчетливость.} {гг !!! ТУМАН  КАЮК !!!} {5} {default}
+#action {^Вы не в состоянии больше видеть невидимых.} {гг !!! ВИДЕТЬ НЕВИДИМЫХ  КАЮК !!!} {5} {default}
+#action {^Вы чувствуете себя немного слабее.} {гг !!! СИЛА  КАЮК !!!} {5} {default}
+#action {^Колодец выкопан здесь.} {#if {$fight=0} {пить колодец;взять $bottle $chest;напол $bottle колодец;полож $bottle $chest}} {5} {default}
+#action {Вы слишком расслаблены} {встать} {5} {default}
+#action {^Имя и пароль через пробел} {Проша AsdPoiZxc} {5} {default}
+#action {Сделать это во сне} {проснуться;встать} {5} {default}
+#action {^Вы голодны} {#if {$fight=0} {взять $food $chest;есть $food}} {5} {default}
+#action {^Вас мучает жажда} {#if {$fight=0} {взять $bottle $chest;пить $bottle;положить $bottle $chest}} {5} {default}
+#action {^Совсем крошечная снежинка ярко переливается,} {вз снеж;пол снеж $chest} {5} {default}
+#action {Кровушка стынет в жилах от предсмертного крика %1} {взять все труп %1} {5} {default}
+#variable {bottle} {фляга}
+#variable {charname} {Проша}
+#variable {charpass} {AsdPoiZxc}
+#variable {chest} {меш}
+#variable {fight} {0}
+#variable {food} {малин}
+#variable {friend} {свитазар}
+#variable {infra} {0}
+#variable {isgroup} {false}
+#variable {light} {лампа}
+#variable {merchant} {скорняк}
+#group local default
+#hot {TAB} {огляд;выходы}
+#hot {F1} {вз свит $chest;зач возвр}
+#hot {F2} {вз чер $chest;осуш чер}
+#hot {F3} {бежать;бежать;бежать}
+#hot {F4} {встать}
+#hot {F6} {клич отваги}
+#hot {F9} {запад}
+#hot {F10} {север}
+#hot {F11} {юг}
+#hot {F12} {восток}
+#hot {Ctrl+1} {помочь $friend;молот}
+#hot {Ctrl+2} {молот}
+#hot {Ctrl+3} {пнуть}
+#hot {Ctrl+4} {спасти}
+#hot {Ctrl+5} {перехватить}
+#hot {Ctrl+W} {bottle_2}
+#hot {Ctrl+E} {жрать}
+#hot {Ctrl+R} {che_2}
+#hot {Ctrl+T} {foo_3}
+#hot {Ctrl+A} {#connect localhost 4000}
+#hot {Ctrl+L} {light_3}
+#hot {Ctrl+V} {#message var}
+#hot {Ctrl+F5} {отд}
+#hot {Alt+F5} {спать}
+#ticksize 60

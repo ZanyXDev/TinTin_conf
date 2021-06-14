@@ -1,0 +1,72 @@
+#ALIAS {setsize} {rows 300;cols 148};
+#ALIAS {setmsize} {rows 300;cols 60};
+
+#ALIAS {^чисто$} {
+    #system {tput clear};
+    #split {2} {1};
+    setsize;
+};
+
+#ALIAS {топ} {
+   #system {htop}; 
+};
+
+#ALIAS {сбр} {
+    #read {/home/zanyxdev/mud/malon.rc};
+    setsize;
+    shields;
+};
+
+#ALIAS {^спр %1} {
+    #send {cols 130};
+    #send {help %1};
+    #send {cols 999};
+};
+
+#ALIAS {^жра}
+{
+ взять $food $chest;
+ есть $food;
+ взять $bottle $chest;
+ пить $bottle;
+ положить $bottle $chest
+};
+
+#ALIAS {мшк %1}
+{
+#VARIABLE {chest} {%1}
+};
+
+#ALIAS {еда %1} 
+{
+#VARIABLE {food} {%1};
+};
+
+#ALIAS {сосуд %1}
+{
+#VARIABLE {bottle} {%1};
+};
+
+#ALIAS {щит %1}
+{
+#VARIABLE {$friend} {%1}; 
+ к !защ! $friend; 
+ к !зат! $friend;
+};
+
+#ALIAS {прк}
+{
+	к !прокл!;
+};
+
+#ALIAS {мг}
+{
+	к !маг!;
+};
+
+#ALIAS {чч}
+{
+ осуш черн;
+#2 { взять черное $chest;  осуш черн;}
+};
+
